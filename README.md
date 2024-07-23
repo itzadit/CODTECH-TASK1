@@ -28,3 +28,5 @@ The objective of this project is to develop a web-based application for assessin
 - **Python (Flask)**: For creating a backend service to evaluate password strength and return appropriate feedback.
 
 - **Flask-CORS**: To handle cross-origin requests and ensure seamless interaction between the frontend and backend services.
+
+![image](https://github.com/user-attachments/assets/338ac644-09f0-4b97-8c31-e1b1be780a14)
