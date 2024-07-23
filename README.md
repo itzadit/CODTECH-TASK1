@@ -3,7 +3,7 @@
 **ID:** CT4CSEH3360
 **Domain:** CYBER SECURITY&ETHICAL HACKING
 **Duration:** JUNE TO JULY 2024
-**Mentor:** 
+**Mentor:** Neela Santhosh Kumar
 
 
 ## Overview of the Project
