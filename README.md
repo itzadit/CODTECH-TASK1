@@ -30,3 +30,6 @@ The objective of this project is to develop a web-based application for assessin
 - **Flask-CORS**: To handle cross-origin requests and ensure seamless interaction between the frontend and backend services.
 
 ![image](https://github.com/user-attachments/assets/338ac644-09f0-4b97-8c31-e1b1be780a14)
+
+![image](https://github.com/user-attachments/assets/fa574fab-12f2-40a5-ab0a-7832e23be780)
+
