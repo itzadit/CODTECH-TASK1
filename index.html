@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+        input[type="password"], input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #submit {
+            background-color: #007bff; /* Blue color for Submit button */
+        }
+        #submit:hover {
+            background-color: #0056b3;
+        }
+        .strength {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: inline-block;
+            color: #fff;
+        }
+        .weak {
+            background-color: #ff4f4f;
+        }
+        .average {
+            background-color: #ffc107;
+        }
+        .strong {
+            background-color: #4caf50;
+        }
+        .very-strong {
+            background-color: #2e8b57;
+        }
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 40%;
+
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #999;
+        }
+        .eye-icon:hover {
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        #powered {
+            opacity: 30%;
+        }
+    </style>
+    <script>
+        function evaluatePassword() {
+            const password = document.getElementById('password').value;
+            fetch('http://127.0.0.1:5000/check_password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ password: password })
+            })
+            .then(response => response.json())
+            .then(result => {
+                const strengthElem = document.getElementById('strength');
+                const feedbackElem = document.getElementById('feedback');
+                
+                strengthElem.innerText = `Your Password is ${result.strength} !!`;
+                strengthElem.className = 'strength ' + result.strength.replace(" ", "-");
+                feedbackElem.innerText = result.feedback;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.innerHTML = '&#128065;'; // Eye icon (open)
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.innerHTML = '&#128070;'; // Eye icon (closed)
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+        <div style="position: relative;">
+            <input type="password" id="password" placeholder="Enter the Password">
+            <span id="eye-icon" class="eye-icon" onclick="togglePassword()">&#128070;</span>
+        </div>
+        <div id="strength" class="strength"></div>
+        <div class="button-container">
+            <button id="submit" onclick="evaluatePassword()">Submit</button>
+        </div>
+        <p id="feedback"></p>
+        <p id="powered">created by Aditya Maurya <br> Task-1 </p>
+    </div>
+</body>
+</html>
